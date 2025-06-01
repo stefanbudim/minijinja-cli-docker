@@ -1,8 +1,28 @@
 #!/bin/bash
 set -euo pipefail # Exit on error, unset variables, pipeline errors
 
-IMAGE_NAME="stefanbudim/minijinja-cli"
+if [ ! $# = 1 ]
+then
+cat <<EOF
+  USAGE:
+    ./$0 IMAGE_NAME
+
+  EXAMPLES:
+    ./$0 stefanbudim/minijinja-cli
+    ./$0 stefanbudim/minijinja-cli:latest
+    ./$0 stefanbudim/minijinja-cli:2.10.2
+EOF
+  exit 1
+else
+  IMAGE_NAME=$1
+fi
+
+
+IMAGE_NAME=$1
+#IMAGE_NAME="stefanbudim/minijinja-cli"
 DATA_DIR="test_data"
+
+
 
 # Create dummy template and data for the test
 mkdir -p ${DATA_DIR}
