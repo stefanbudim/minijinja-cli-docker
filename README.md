@@ -56,11 +56,11 @@ exec_start: /usr/bin/myapp --config /etc/myapp/config.yaml
 user: myappuser
 ```
 
-# More Examples
-Find more examples in [examples](examples).
+# Examples
+[examples](examples)
 
 
-## Deep Dive
+# Deep Dive
 [Generating Kubernetes YAML Files with Jinja2 Templates](examples/kubernetes/README.md)
 
 
