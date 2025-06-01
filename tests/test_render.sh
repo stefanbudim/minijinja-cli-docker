@@ -26,7 +26,7 @@ DATA_DIR="test_data"
 
 # Create dummy template and data for the test
 mkdir -p ${DATA_DIR}
-echo "Hello, {{ name }} from a test!" > ${DATA_DIR}/template.j2
+echo "Hello, {{ name }} from a test! FORCE FAIL" > ${DATA_DIR}/template.j2
 echo '{"name": "Mina"}' > ${DATA_DIR}/data.json
 
 echo "--- Running rendering test ---"
