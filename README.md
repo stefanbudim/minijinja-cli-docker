@@ -56,6 +56,10 @@ exec_start: /usr/bin/myapp --config /etc/myapp/config.yaml
 user: myappuser
 ```
 
+## More Examples
+Find more examples in [examples](examples).
+
+
 # Releases
 [docker hub](https://hub.docker.com/r/stefanbudim/minijinja-cli)
 
