@@ -3,15 +3,16 @@ A CLI tool to render [Jinja2](https://jinja.palletsprojects.com/en/stable/) temp
 # Features
 - single command line execution
 - shell scripting
-- straightforward steps in CI/CD pipelines where minimal overhead and setup are desired
-- fast template engine execution (The Rust implementation is much faster than Python)
+- steps in CI/CD pipelines with minimal overhead and setup
+- fast template rendering as the Rust implementation is much faster than Python
 - no dependencies required / no python required
 
 # Usage
 
 ## To render a file
 ```bash
-docker run --rm -v ".:/data" stefanbudim/minijinja-cli /data/service-template.j2 /data/service-data.yaml  > /etc/systemd/system/my.service
+docker run --rm -v ".:/data" stefanbudim/minijinja-cli \
+/data/service-template.j2 /data/service-data.yaml  > /etc/systemd/system/my.service
 ```
 This will create file my.service
 ```bash
