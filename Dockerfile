@@ -1,5 +1,5 @@
 # Stage 1: Build minijinja-cli
-FROM rust:slim-bookworm as builder
+FROM rust:slim-bookworm AS builder
 
 WORKDIR /app
 
