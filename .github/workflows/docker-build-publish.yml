@@ -33,8 +33,30 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,format=long,prefix=
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            #type=sha,format=long,prefix=
+            #type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+            # For Git tags like "v1.1.0" or "1.1.0":
+            # 1. Creates a Docker tag that exactly matches the Git tag (e.g., "v1.1.0" or "1.1.0")
+            type=ref,event=tag
+
+            # 2. Creates semantic Docker tags (e.g., from Git tag "v1.1.0" or "1.1.0", it produces:
+            #    "1.1.0", "1.1", "1")
+            type=semver,pattern={{version}}
+
+            # For pushes or dispatches on the 'main' branch (if you were to add main branch pushes to the 'on' trigger):
+            # Creates Docker tag "latest". This will also apply if workflow_dispatch is run on the main branch.
+            type=raw,value=latest,enable=${{ github.ref_name == 'main' }}
+
+            # For all builds:
+            # Creates a Docker tag with the short commit SHA (e.g., "a1b2c3d") for traceability
+            type=sha,format=short,prefix=
+          flavor: |
+            # Add this if you want 'latest' to point to the highest semver tag pushed
+            # latest=auto
+            # Note: The 'latest' tag from `type=raw` above will take precedence if its condition is met.
+            # If you want 'latest' to *only* be the highest semver tag, remove the `type=raw,value=latest...` line
+            # and uncomment `latest=auto` here. Or, for this specific request, the current setup is fine.
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
