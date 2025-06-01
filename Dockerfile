@@ -7,8 +7,7 @@ WORKDIR /app
 RUN cargo install minijinja-cli --root /usr/local
 
 # Stage 2: Create the final, minimal image
-# Use alpine image for the smallest possible size (or use scratch and link statically)
-FROM alpine:latest
+FROM debian:bookworm-slim
 
 # Set environment variable for minijinja-cli installation directory
 ENV PATH="/usr/local/bin:$PATH"
