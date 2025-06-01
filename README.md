@@ -59,6 +59,16 @@ user: myappuser
 # Releases
 [docker hub](https://hub.docker.com/r/stefanbudim/minijinja-cli)
 
+# Create a new Release
+Create a git tag with a semVer version number e.g. 2.20.2
+```bash
+./tag-create-push.sh 2.10.2
+```
+Once the tag is pushed a github action workflow will automatically start.
+
+The new release will be publised on [docker hub](https://hub.docker.com/r/stefanbudim/minijinja-cli). Docker tag will be the same as the git tag.
+
+
 # Credits
 
 - [minijinja-cli](https://crates.io/crates/minijinja-cli) [github](https://github.com/mitsuhiko/minijinja/tree/main/minijinja-cli)
