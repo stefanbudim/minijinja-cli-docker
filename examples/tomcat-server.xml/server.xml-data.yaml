@@ -1,0 +1,9 @@
+shutdown_port: 8005
+shutdown_command: SHUTDOWN
+service_name: Catalina
+http_port: 8080
+https_port: 8443
+ajp_port: 8009
+enable_ajp: true
+engine_name: Catalina
+default_host: localhost

@@ -1,0 +1,13 @@
+app_name: my-web-app
+image:
+  name: example/web
+  tag: 1.2.3
+replica_count: 3
+environment: production
+container_ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  - name: https
+    port: 443
+    protocol: TCP

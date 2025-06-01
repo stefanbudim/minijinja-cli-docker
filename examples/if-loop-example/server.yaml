@@ -1,0 +1,14 @@
+# Server Configuration
+
+Server Name: my_web_server
+IP Address: 192.168.1.100
+Port: 8080
+
+
+# User List
+Users:
+
+  - Name: admin, Role: administrator
+
+  - Name: guest, Role: viewer
+

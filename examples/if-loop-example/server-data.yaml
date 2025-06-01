@@ -1,0 +1,10 @@
+server:
+  name: my_web_server
+  ip_address: 192.168.1.100
+  port: 8080
+  enabled: true
+users:
+  - name: admin
+    role: administrator
+  - name: guest
+    role: viewer

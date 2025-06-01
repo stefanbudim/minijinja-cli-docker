@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-app-deployment
+  labels:
+    app: my-web-app
+    environment: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-web-app
+  template:
+    metadata:
+      labels:
+        app: my-web-app
+    spec:
+      containers:
+      
+      - name: my-web-app-container-1
+        image: example/web:1.2.3
+        ports:
+          - containerPort: 80
+            protocol: TCP
+        
+      
+      - name: my-web-app-container-2
+        image: example/web:1.2.3
+        ports:
+          - containerPort: 443
+            protocol: TCP
+        
+      
+      # Example of a filter
+      env:
+        - name: APP_ENVIRONMENT
+          value: PRODUCTION

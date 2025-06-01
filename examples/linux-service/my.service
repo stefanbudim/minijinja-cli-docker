@@ -1,0 +1,12 @@
+[Unit]
+Description=My Custom Application Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/myapp --config /etc/myapp/config.yaml
+Restart=on-failure
+User=myappuser
+
+[Install]
+WantedBy=multi-user.target

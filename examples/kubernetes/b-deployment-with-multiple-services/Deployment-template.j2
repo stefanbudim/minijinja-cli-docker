@@ -1,0 +1,43 @@
+{% for service in services %}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ service.name }}-deployment
+  labels:
+    app: {{ service.name }}
+spec:
+  replicas: {{ service.replicas }}
+  selector:
+    matchLabels:
+      app: {{ service.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ service.name }}
+    spec:
+      containers:
+      - name: {{ service.name }}-container
+        image: {{ service.image.name }}:{{ service.image.tag }}
+        ports:
+        {% for port in service.ports %}
+        - containerPort: {{ port.containerPort }}
+          protocol: {{ port.protocol }}
+        {% endfor %}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ service.name }}-service
+  labels:
+    app: {{ service.name }}
+spec:
+  selector:
+    app: {{ service.name }}
+  ports:
+  {% for port in service.ports %}
+  - protocol: {{ port.protocol }}
+    port: {{ port.servicePort }}
+    targetPort: {{ port.containerPort }}
+  {% endfor %}
+{% endfor %}

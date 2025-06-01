@@ -1,0 +1,19 @@
+services:
+  - name: frontend
+    replicas: 2
+    image:
+      name: myregistry/frontend
+      tag: latest
+    ports:
+      - containerPort: 80
+        protocol: TCP
+        servicePort: 80
+  - name: backend
+    replicas: 3
+    image:
+      name: myregistry/backend
+      tag: 1.0.0
+    ports:
+      - containerPort: 8080
+        protocol: TCP
+        servicePort: 80

@@ -1,0 +1,14 @@
+# Server Configuration
+{% if server.enabled %}
+Server Name: {{ server.name }}
+IP Address: {{ server.ip_address }}
+Port: {{ server.port }}
+{% else %}
+Server is disabled.
+{% endif %}
+
+# User List
+Users:
+{% for user in users %}
+  - Name: {{ user.name }}, Role: {{ user.role }}
+{% endfor %}

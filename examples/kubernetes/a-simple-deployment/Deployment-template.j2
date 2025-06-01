@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ app_name }}-deployment
+  labels:
+    app: {{ app_name }}
+    environment: {{ environment }}
+spec:
+  replicas: {{ replica_count }}
+  selector:
+    matchLabels:
+      app: {{ app_name }}
+  template:
+    metadata:
+      labels:
+        app: {{ app_name }}
+    spec:
+      containers:
+      {% for container_port in container_ports %}
+      - name: {{ app_name }}-container-{{ loop.index }}
+        image: {{ image.name }}:{{ image.tag }}
+        ports:
+          - containerPort: {{ container_port.port }}
+            protocol: {{ container_port.protocol }}
+        {% if environment == 'development' %}
+        env:
+          - name: DEBUG_MODE
+            value: "true"
+        {% endif %}
+      {% endfor %}
+      # Example of a filter
+      env:
+        - name: APP_ENVIRONMENT
+          value: {{ environment | upper }}
